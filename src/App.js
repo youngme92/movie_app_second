@@ -3,6 +3,7 @@
 import axios from 'axios';
 import React from 'react';
 import Movies from './Movies';
+import './App.css';
 
 class App extends React.Component {
   constructor(props) {
@@ -24,19 +25,23 @@ class App extends React.Component {
   render() {
     const { isLoading, movies } = this.state;
     return (
-      <div>
+      <div className="container">
         {isLoading ? (
-          <div>
+          <div className="loader">
             <h2>isLoading...</h2>
           </div>
         ) : movies.map(movies => (
-          <Movies key={movies.id}
-            id={movies.id}
-            year={movies.year}
-            title={movies.title}
-            summary={movies.summary}
-            youtubeUrl={movies.yt_trailer_code}
-            poster={movies.medium_cover_image} />
+          <div key={movies.id} className="movies">
+            <Movies
+              key={movies.id}
+              id={movies.id}
+              year={movies.year}
+              title={movies.title}
+              summary={movies.summary}
+              youtubeUrl={movies.yt_trailer_code}
+              poster={movies.medium_cover_image}
+              genres={movies.genres} />
+          </div>
         ))}
       </div>
     )
